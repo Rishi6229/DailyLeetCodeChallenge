@@ -1,0 +1,60 @@
+class Solution {
+    public int minMutation(String start, String end, String[] bank) {
+        if(start == null || end == null || bank == null)
+        {
+            return -1;
+        }
+        Set<String>st = new HashSet<>();
+        for(String s:bank)
+        {
+            st.add(s);
+        }
+        if(st.contains(start))
+        {
+            st.remove(start);
+        }
+
+       Queue<String>q = new LinkedList<>();
+       q.offer(start);
+       char[]gene = new char[]{'A' , 'C' , 'G' , 'T'};
+       int res  = 0;
+
+       while(!q.isEmpty())
+       {
+           int size  = q.size();
+           for(int i =0; i < size; i++)
+           {
+               char[]word = q.poll().toCharArray();
+               for(int j = 0; j < word.length; j++)
+               {
+                   char temp = word[j];
+                   for(int k =0; k < gene.length; k++)
+                   {
+                       word[j] = gene[k];
+                       String cur = new String(word);
+                       if(st.contains(cur))
+                       {
+                           if(cur.equals(end))
+                           {
+                               return res + 1;
+                           }
+                           st.remove(cur);
+                           q.offer(cur);
+                       }
+                   }
+                   word[j] = temp;
+               }
+           }
+           res++;
+       }
+       return -1;
+
+
+
+
+
+
+
+
+    }
+}
