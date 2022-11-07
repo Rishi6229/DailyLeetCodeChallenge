@@ -1,0 +1,21 @@
+class Solution {
+    public int maximum69Number (int num) {
+        int x = num , index = 0 , index6 = -1;
+        while(x > 0)
+        {
+            if(x % 10 == 6)
+            {
+                index6 = index;
+            }
+            index++;
+            x /= 10;
+        }
+        if(index6 == -1)
+        {
+            return num;
+        }
+        else{
+            return (int)(num + 3 * Math.pow(10 , index6));
+        }
+    }
+}
