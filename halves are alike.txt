@@ -1,0 +1,49 @@
+class Solution
+{
+    public boolean halvesAreAlike(String s)
+    {
+        int n = s.length();
+        int mid = n/2;
+        String fHalf = "";
+        String lHalf ="";
+        for(int i =0; i < mid; i++)
+        {
+            fHalf += s.charAt(i);
+        }
+
+        for(int i = mid; i<n; i++)
+        {
+            lHalf += s.charAt(i);
+        }
+       
+        fHalf = fHalf.toLowerCase();
+        lHalf = lHalf.toLowerCase();
+
+        int vfHalf = 0 , vlHalf = 0;
+        for(int i =0; i < fHalf.length(); i++)
+        {
+            if(fHalf.charAt(i) == 'a' || fHalf.charAt(i) == 'e' || fHalf.charAt(i) == 'i' || fHalf.charAt(i) == 'o' || fHalf.charAt(i) == 'u')
+            {
+                vfHalf++;
+            }
+        }
+
+        for(int i =0; i < fHalf.length(); i++)
+        {
+            if(lHalf.charAt(i) == 'a' || lHalf.charAt(i) == 'e' || lHalf.charAt(i) == 'i' || lHalf.charAt(i) == 'o' || lHalf.charAt(i) == 'u')
+            {
+              vlHalf++;
+            }
+        }
+
+
+        return vfHalf == vlHalf;
+
+
+
+
+
+
+
+    }
+}
