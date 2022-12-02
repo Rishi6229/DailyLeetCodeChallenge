@@ -1,0 +1,79 @@
+class Solution {
+    public boolean closeStrings(String word1, String word2) {
+        int m = word1.length();
+        int n = word2.length();
+           
+        //Special Case 1
+        if(m != n)
+        {
+            return false;
+        }
+        
+        //Special Case 2
+        Set<Character>st1 = new HashSet<>();
+        Set<Character>st2 = new HashSet<>();
+
+        for(int i =0; i < m; i++)
+        {
+            st1.add(word1.charAt(i));
+        }
+
+        for(int i=0; i < n; i++)
+        {
+            st2.add(word2.charAt(i));
+        }
+
+        if(st1.equals(st2) == false)
+        {
+            return false;
+        }
+
+      // -- - -- -- - - - - - - - - - \\
+
+        //Base Case 2
+        Map<Character , Integer>w1 = new HashMap<>();
+        Map<Character , Integer>w2 = new HashMap<>();
+ 
+         for(int i = 0; i < m; i++)
+         {
+             if(w1.containsKey(word1.charAt(i)))
+             {
+                 w1.put(word1.charAt(i) , w1.get(word1.charAt(i)) + 1);
+             }
+             else{
+                 w1.put(word1.charAt(i) , 1);
+             }
+         }
+
+
+         for(int i = 0; i < n; i++)
+         {
+             if(w2.containsKey(word2.charAt(i)))
+             {
+                 w2.put(word2.charAt(i) , w2.get(word2.charAt(i)) + 1);
+             }
+             else{
+                 w2.put(word2.charAt(i) , 1);
+             }
+         }
+
+
+       List<Integer>keyForW1 = new ArrayList<>();
+       List<Integer>keyForW2 = new ArrayList<>();
+
+        for(Map.Entry<Character , Integer>itr: w1.entrySet())
+        {
+            keyForW1.add(itr.getValue());
+        }
+
+         for(Map.Entry<Character , Integer>itr1: w2.entrySet())
+        {
+            keyForW2.add(itr1.getValue());
+        }
+        
+        Collections.sort(keyForW1);
+        Collections.sort(keyForW2);
+
+        return keyForW1.equals(keyForW2);
+    }
+}
